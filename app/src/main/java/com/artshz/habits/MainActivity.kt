@@ -1,9 +1,12 @@
 package com.artshz.habits
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -17,38 +20,42 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.artshz.habits.navigation.NavigationHost
 import com.artshz.habits.navigation.NavigationRoute
+import com.artshz.habits.onboarding.data.OnboardingRepositoryImpl
 import com.artshz.habits.ui.theme.HabitsTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             HabitsTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val navController = rememberNavController()
-                    NavigationHost(navController = navController, startDestination = NavigationRoute.Onboarding)
+                Scaffold (
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        val navController = rememberNavController()
+                        NavigationHost(
+                            navController = navController,
+                            startDestination = getStartDestination()
+                        )
+                    }
+
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HabitsTheme {
-        Greeting("Android")
+    private fun getStartDestination(): NavigationRoute {
+        return if(viewModel.hasSeenOnb) {
+            NavigationRoute.Login
+        } else {
+            NavigationRoute.Onboarding
+        }
     }
 }
+

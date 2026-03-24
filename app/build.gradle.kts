@@ -53,15 +53,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
-            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-        }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
-            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-        }
-    }
-
     // Core
     implementation(platform(libs.kotlin.bom))
     implementation(libs.appcompat)
@@ -95,7 +86,7 @@ dependencies {
 
     // Dagger Hilt
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.androidx.hilt.compiler)
 
@@ -131,8 +122,6 @@ dependencies {
     androidTestImplementation(libs.androidx.work.testing)
     androidTestImplementation(libs.androidx.core.ktx)
     androidTestImplementation(libs.androidx.rules)
-
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
