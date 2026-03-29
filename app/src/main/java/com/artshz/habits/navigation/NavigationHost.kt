@@ -23,8 +23,7 @@ fun NavigationHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination.route,
-
+        startDestination = startDestination.route
     ) {
         composable(NavigationRoute.Onboarding.route) {
             Column(
