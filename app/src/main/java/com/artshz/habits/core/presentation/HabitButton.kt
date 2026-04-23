@@ -29,6 +29,7 @@ fun HabitButton(
         colors = ButtonDefaults.buttonColors(
             backgroundColor = MaterialTheme.colorScheme.primary
         ),
+        enabled = enabled,
         shape = RoundedCornerShape(8.dp)
     ) {
         Text(

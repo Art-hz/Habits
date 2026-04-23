@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.artshz.habits.authentication.login.presentation.LoginScreen
 import com.artshz.habits.onboarding.domain.repository.OnboardingRepository
 import com.artshz.habits.onboarding.presentation.OnboardingScreen
 
@@ -39,7 +40,7 @@ fun NavigationHost(
         }
 
         composable(NavigationRoute.Login.route) {
-            Text(text = "Login")
+            LoginScreen()
         }
     }
 }
