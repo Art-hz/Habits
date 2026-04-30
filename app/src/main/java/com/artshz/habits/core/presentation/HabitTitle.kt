@@ -7,17 +7,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun HabitTitle(
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    textSize: TextUnit = 24.sp
 ) {
     Text(
         text = title.uppercase(),
         modifier = modifier,
         style = MaterialTheme.typography.headlineSmall.copy(
             fontWeight = FontWeight.Bold,
+            fontSize = textSize,
             color = MaterialTheme.colorScheme.tertiary
         ),
         textAlign = TextAlign.Center

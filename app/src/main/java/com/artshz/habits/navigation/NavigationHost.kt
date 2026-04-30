@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.artshz.habits.authentication.login.presentation.LoginScreen
+import com.artshz.habits.authentication.register.presentation.SignUpScreen
 import com.artshz.habits.onboarding.domain.repository.OnboardingRepository
 import com.artshz.habits.onboarding.presentation.OnboardingScreen
 
@@ -40,7 +41,27 @@ fun NavigationHost(
         }
 
         composable(NavigationRoute.Login.route) {
-            LoginScreen()
+            LoginScreen(onSignUp = {
+                navController.navigate(NavigationRoute.SignUp.route)
+            }) {
+                navController.popBackStack()
+                navController.navigate(NavigationRoute.Home.route)
+            }
+        }
+
+        composable(NavigationRoute.Home.route) {
+           Column() {
+               Text(text = "Home", style = TextStyle(color = Color.Black))
+           }
+        }
+
+        composable(NavigationRoute.SignUp.route) {
+            SignUpScreen(onGoToSignIn = {
+
+            }, onSignUp = {
+                navController.popBackStack()
+                navController.navigate(NavigationRoute.Home.route)
+            })
         }
     }
 }

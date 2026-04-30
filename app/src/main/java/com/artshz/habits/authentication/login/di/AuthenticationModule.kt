@@ -7,6 +7,7 @@ import com.artshz.habits.authentication.login.domain.repository.AuthenticationRe
 import com.artshz.habits.authentication.login.domain.usecase.LoginUseCase
 import com.artshz.habits.authentication.login.domain.usecase.ValidateMailUseCase
 import com.artshz.habits.authentication.login.domain.usecase.ValidatePasswordUseCase
+import com.artshz.habits.authentication.register.domain.usecase.SignUpUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,4 +37,8 @@ object AuthenticationModule {
     @Provides
     @Singleton
     fun provideLoginUseCase(repository: AuthenticationRepository): LoginUseCase = LoginUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSignUpUseCase(repository: AuthenticationRepository): SignUpUseCase = SignUpUseCase(repository)
 }

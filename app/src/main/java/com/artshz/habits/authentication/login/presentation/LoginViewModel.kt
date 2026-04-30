@@ -38,9 +38,7 @@ class LoginViewModel @Inject constructor(
                 login()
                 state = state.copy(isLoggedIn = true)
             }
-            LoginEvent.OnSignUp -> {
-                state = state.copy(signUp = true)
-            }
+
         }
     }
 
@@ -70,7 +68,7 @@ class LoginViewModel @Inject constructor(
             result.onSuccess {
                 state = state.copy(isLoggedIn = true)
                 Log.e("LoginViewModel", "login: success")
-                //go to dashboard
+
             }
             result.onFailure {
              state = state.copy(

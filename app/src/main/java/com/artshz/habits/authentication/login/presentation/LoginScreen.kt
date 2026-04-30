@@ -38,7 +38,9 @@ import com.artshz.habits.core.presentation.HabitTitle
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    onSignUp: () -> Unit,
+    onGoToHome: () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     LaunchedEffect(viewModel.state.errorMessage) {
@@ -49,6 +51,14 @@ fun LoginScreen(
             )
         }
     }
+
+    LaunchedEffect(viewModel.state.isLoggedIn) {
+        if(viewModel.state.isLoggedIn) {
+            onGoToHome()
+        }
+    }
+
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -86,6 +96,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.weight(1f))
                 LoginForm(
                     state = viewModel.state,
+                    onSignUp = onSignUp,
                     onLoginEvent = viewModel::onEvent
                 )
             }
