@@ -4,6 +4,7 @@ import com.artshz.habits.authentication.login.data.matcher.EmailMatcherImpl
 import com.artshz.habits.authentication.login.data.repository.AuthenticationRepositoryImpl
 import com.artshz.habits.authentication.login.domain.matcher.EmailMatcher
 import com.artshz.habits.authentication.login.domain.repository.AuthenticationRepository
+import com.artshz.habits.authentication.login.domain.usecase.GetUserIdUseCase
 import com.artshz.habits.authentication.login.domain.usecase.LoginUseCase
 import com.artshz.habits.authentication.login.domain.usecase.ValidateMailUseCase
 import com.artshz.habits.authentication.login.domain.usecase.ValidatePasswordUseCase
@@ -41,4 +42,8 @@ object AuthenticationModule {
     @Provides
     @Singleton
     fun provideSignUpUseCase(repository: AuthenticationRepository): SignUpUseCase = SignUpUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetUserIdUseCase(repository: AuthenticationRepository): GetUserIdUseCase = GetUserIdUseCase(repository)
 }

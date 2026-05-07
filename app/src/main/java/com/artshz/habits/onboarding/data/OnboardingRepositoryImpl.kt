@@ -10,6 +10,7 @@ class OnboardingRepositoryImpl(
 
     companion object {
         private const val HAS_SEEN_ONBOARDING = "has_seen_onboarding"
+        private const val IS_LOGGED_IN = "is_logged_in"
     }
 
     override fun hasSeenOnboarding(): Boolean
@@ -22,4 +23,5 @@ class OnboardingRepositoryImpl(
     override fun completeOnboarding() {
         sharedPref.edit { putBoolean(HAS_SEEN_ONBOARDING, true) }
     }
+
 }

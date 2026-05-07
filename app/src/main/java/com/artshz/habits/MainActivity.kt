@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             HabitsTheme {
-                Scaffold (
+                Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)) {
@@ -51,11 +51,14 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun getStartDestination(): NavigationRoute {
-        return if(viewModel.hasSeenOnb) {
-            NavigationRoute.Login
-        } else {
-            NavigationRoute.Onboarding
+        if (viewModel.isLoggedIn) {
+            return NavigationRoute.Home
         }
+        if (viewModel.hasSeenOnb) {
+            return NavigationRoute.Login
+        }
+        return NavigationRoute.Onboarding
+
     }
 }
 

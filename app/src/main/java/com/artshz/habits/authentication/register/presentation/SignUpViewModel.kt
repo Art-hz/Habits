@@ -1,8 +1,10 @@
 package com.artshz.habits.authentication.register.presentation
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artshz.habits.authentication.login.domain.usecase.PasswordResult

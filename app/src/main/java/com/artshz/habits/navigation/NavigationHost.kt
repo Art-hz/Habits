@@ -59,8 +59,12 @@ fun NavigationHost(
             SignUpScreen(onGoToSignIn = {
 
             }, onSignUp = {
-                navController.popBackStack()
-                navController.navigate(NavigationRoute.Home.route)
+                navController.navigate(NavigationRoute.Home.route) {
+                    popUpTo(navController.graph.id) {
+                        inclusive = true
+                        //para que borre todo el stack anterior
+                    }
+                }
             })
         }
     }
