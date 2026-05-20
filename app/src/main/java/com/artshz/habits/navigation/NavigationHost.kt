@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.artshz.habits.authentication.login.presentation.LoginScreen
 import com.artshz.habits.authentication.register.presentation.SignUpScreen
+import com.artshz.habits.home.presentation.index.HomeScreen
 import com.artshz.habits.onboarding.domain.repository.OnboardingRepository
 import com.artshz.habits.onboarding.presentation.OnboardingScreen
 
@@ -50,9 +51,7 @@ fun NavigationHost(
         }
 
         composable(NavigationRoute.Home.route) {
-           Column() {
-               Text(text = "Home", style = TextStyle(color = Color.Black))
-           }
+            HomeScreen()
         }
 
         composable(NavigationRoute.SignUp.route) {
